@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-label="Wacom for Windows favicon">
+  <rect x="4" y="4" width="56" height="56" rx="12" fill="#ffffff"/>
+  <path d="M12 18 L20 46 L32 26 L44 46 L52 18" stroke="#000000" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="50" cy="14" r="5" fill="#00b0ff"/>
+</svg>

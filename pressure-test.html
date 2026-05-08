@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calibrate and Test Wacom Pen Pressure on Windows (Online Tool)</title>
+  <meta name="description" content="Draw on the canvas to test Wacom pen pressure, tilt, and buttons on Windows 10/11. Live readings, adjustable brush, and instant reset. Includes safe direct driver link and setup tips." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://wacom-app.github.io/pressure-test.html" />
+  <link rel="preconnect" href="https://cdn.wacom.com" crossorigin>
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Icons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://wacom-app.github.io/pressure-test.html" />
+  <meta property="og:title" content="Calibrate and Test Wacom Pen Pressure (Online Tool)" />
+  <meta property="og:description" content="Live pressure and tilt test for Wacom pens on Windows. Draw to verify your setup." />
+  <meta property="og:image" content="https://wacom-app.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calibrate and Test Wacom Pen Pressure (Online Tool)" />
+  <meta name="twitter:description" content="Live pressure, tilt, and button readings while you draw. Works in modern browsers with pointer events." />
+  <meta name="twitter:image" content="https://wacom-app.github.io/og-image.png" />
+
+  <!-- Modified time for crawlers -->
+  <meta property="article:modified_time" content="2026-05-08T05:52:45Z" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://wacom-app.github.io/"},
+          {"@type":"ListItem","position":2,"name":"Pressure Test","item":"https://wacom-app.github.io/pressure-test.html"}
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Wacom Tablet Driver for Windows",
+        "applicationCategory": "Utilities",
+        "operatingSystem": "Windows 10, Windows 11",
+        "softwareVersion": "6.4.13-4",
+        "downloadUrl": "https://cdn.wacom.com/u/productsupport/drivers/win/professional/WacomTablet_6.4.13-4.exe",
+        "installUrl": "https://cdn.wacom.com/u/productsupport/drivers/win/professional/WacomTablet_6.4.13-4.exe",
+        "inLanguage": "en",
+        "offers": {"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock"},
+        "publisher": {"@type":"Organization","name":"Wacom Co., Ltd.","url":"https://www.wacom.com/"},
+        "softwareRequirements": "Windows 10 or Windows 11, 64-bit",
+        "dateModified": "2026-05-08",
+        "image": "https://wacom-app.github.io/og-image.png",
+        "description": "Official Wacom Tablet Driver. Safe direct link from Wacom CDN."
+      },
+      {
+        "@type": "HowTo",
+        "name": "Test Wacom pen pressure in your browser (Windows)",
+        "description": "Use this page's canvas to verify pressure, tilt, and buttons with live readouts.",
+        "totalTime": "PT2M",
+        "tool": [{"@type":"HowToTool","name":"Modern browser with Pointer Events"}],
+        "step": [
+          {"@type":"HowToStep","url":"https://wacom-app.github.io/pressure-test.html#step-connect","name":"Connect your tablet","text":"Plug your Wacom tablet directly into a USB port on your PC (avoid hubs while testing)."},
+          {"@type":"HowToStep","url":"https://wacom-app.github.io/pressure-test.html#step-driver","name":"Install or update the driver","text":"If needed, install the latest Wacom driver and restart Windows."},
+          {"@type":"HowToStep","url":"https://wacom-app.github.io/pressure-test.html#step-draw","name":"Draw on the canvas","text":"Press harder/softer to see live pressure values and thicker/thinner strokes. Tilt and button presses are shown in real time."}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type":"Question","name":"Do I need the Wacom driver for this test?","acceptedAnswer":{"@type":"Answer","text":"Yes, the driver provides full pen features. Without it, some properties may not be reported correctly."}},
+          {"@type":"Question","name":"Which browsers support pressure and tilt?","acceptedAnswer":{"@type":"Answer","text":"Modern Chromium-based browsers and recent Firefox support Pointer Events with pen pressure. Tilt and twist support vary by device and browser."}},
+          {"@type":"Question","name":"Why is pressure always 1.0 or 0?","acceptedAnswer":{"@type":"Answer","text":"If pressure doesn't vary, toggle Windows Ink in Wacom Tablet Properties, restart your app/browser, or reinstall the driver."}},
+          {"@type":"Question","name":"Is the canvas data saved?","acceptedAnswer":{"@type":"Answer","text":"No, everything runs locally in your browser. Nothing is uploaded."}}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #f5f5f5;
+      --muted: #bdbdbd;
+      --card: #111213;
+      --line: #1f2022;
+      --accent: #00b0ff;
+      --accent-contrast: #001018;
+      --success: #3ddc84;
+      --warning: #ffd166;
+      --error: #ff6b6b;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    a { color: var(--text); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    header { position: sticky; top: 0; z-index: 50; background: rgba(10,10,10,.9); backdrop-filter: saturate(140%) blur(8px); border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; gap: 12px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .2px; }
+    .brand .logo { width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; background: #fff; color: #000; font-size: 18px; font-weight: 800; }
+    nav ul { list-style: none; display: flex; gap: 14px; margin: 0; padding: 0; flex-wrap: wrap; }
+    nav a { padding: 8px 10px; border-radius: 8px; }
+    nav a:focus-visible, .btn:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    nav a:hover { background: #141518; text-decoration: none; }
+
+    .hero { padding: 48px 0; border-bottom: 1px solid var(--line); background: linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.15)); }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: center; }
+    .hero h1 { font-size: clamp(26px, 4vw, 40px); line-height: 1.15; margin: 0 0 10px; }
+    .hero p.lead { color: var(--muted); font-size: clamp(14px, 2vw, 18px); margin: 0 0 18px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--line); background: #15161a; color: #fff; font-weight: 600; cursor: pointer; transition: transform .04s ease, background .2s ease; }
+    .btn:hover { background: #1a1c21; text-decoration: none; }
+    .btn:active { transform: translateY(1px); }
+    .btn.primary { background: var(--accent); color: #001018; border-color: transparent; }
+    .btn.primary:hover { background: #1ac0ff; color: var(--accent-contrast); }
+    .btn.ghost { background: transparent; }
+
+    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 999px; background: #121316; border: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .mini { font-size: 12px; color: var(--muted); }
+
+    .section { padding: 36px 0; border-bottom: 1px solid var(--line); }
+
+    .grid-2 { display: grid; grid-template-columns: 1.2fr 1fr; gap: 14px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+    .card h3 { margin: 0 0 6px; font-size: 16px; }
+    .card p, .card li { color: var(--muted); font-size: 14px; }
+    .card ul { margin: 8px 0 0 18px; }
+
+    .canvas-wrap { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: #0b0c10; }
+    .canvas-toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 10px; border-bottom: 1px solid var(--line); background: #0f1013; }
+    .canvas-toolbar .group { display: inline-flex; gap: 8px; align-items: center; }
+    .canvas-toolbar label { font-size: 12px; color: var(--muted); }
+    .canvas-toolbar input[type="range"] { width: 160px; }
+    #drawboard { display: block; width: 100%; height: 360px; background-image: linear-gradient(#0b0c10, #0b0c10), linear-gradient(transparent, transparent); }
+    .grid-bg { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 20px 20px, rgba(255,255,255,.06) 1px, rgba(0,0,0,0) 1px); background-size: 40px 40px; }
+
+    .readouts { display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; }
+    .kv { display: flex; justify-content: space-between; align-items: center; padding: 10px; border: 1px solid var(--line); border-radius: 10px; background: #0f1013; }
+    .kv .k { color: var(--muted); font-size: 12px; }
+    .kv .v { font-variant-numeric: tabular-nums; font-weight: 600; }
+
+    .related-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .rel { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: #0f1013; }
+
+    footer { padding: 28px 0; color: var(--muted); }
+    footer .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+
+    .cookie-banner { position: fixed; right: 16px; bottom: 16px; width: min(560px, calc(100% - 32px)); z-index: 100; background: #0e0f12; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 10px 40px rgba(0,0,0,.45); display: none; }
+    .cookie-inner { padding: 14px; display: grid; gap: 10px; }
+    .cookie-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .cookie-banner .btn { padding: 10px 12px; }
+    .cookie-banner .btn.small { font-size: 14px; }
+
+    @media (max-width: 1024px) { .grid-2 { grid-template-columns: 1fr; } }
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .related-list { grid-template-columns: 1fr; }
+      nav ul { gap: 6px; }
+    }
+  </style>
+
+  <!-- Inline SVG sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="icon-windows" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5l8-1.5v8.5H3V5zm9-1.7L21 2v9.3h-9V3.3zM3 12.7h8V21L3 19.5v-6.8zM12 12.7h9V22l-9-1.7v-7.6z"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14v-2H5v2zm7-18h-1v9.59l-3.3-3.3-1.4 1.41L12 15.41l5.7-5.71-1.4-1.41-3.3 3.3V2z"/></symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></symbol>
+    <symbol id="icon-question" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14h-2v-2h2v2zm1.9-6.5c0 1.9-2 2.2-2 3.5h-1.8c0-2.4 2-2.7 2-3.5 0-.6-.5-1.1-1.2-1.1-.8 0-1.3.6-1.3 1.4H8c0-1.7 1.4-3.2 3.7-3.2 1.9 0 3.2 1.2 3.2 2.9z"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="currentColor"><path d="M9 6l6 6-6 6"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3 5.7L12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"/></symbol>
+  </svg>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="/" aria-label="Home">
+        <span class="logo" aria-hidden="true">W</span>
+        <span>Wacom for Windows</span>
+      </a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="/install.html">Install</a></li>
+          <li><a href="/troubleshoot.html">Troubleshoot</a></li>
+          <li><a href="/best-settings.html">Best Settings</a></li>
+          <li><a href="/windows-11.html">Windows 11</a></li>
+          <li><a href="/pressure-test.html" aria-current="page">Pressure Test</a></li>
+          <li><a href="/faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="pill" aria-hidden="true">
+            <svg width="16" height="16" aria-hidden="true"><use href="#icon-windows"/></svg>
+            Windows 10 / 11 • Driver v6.4.13-4
+          </div>
+          <h1>Calibrate and Test Wacom Pen Pressure (Online Tool)</h1>
+          <p class="lead">Draw below to verify pen pressure, tilt, and buttons. Use it after installing the driver or when troubleshooting apps.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="https://cdn.wacom.com/u/productsupport/drivers/win/professional/WacomTablet_6.4.13-4.exe" data-file-url="https://cdn.wacom.com/u/productsupport/drivers/win/professional/WacomTablet_6.4.13-4.exe" data-file-name="WacomTablet_6.4.13-4.exe" rel="nofollow">
+              <svg width="18" height="18" aria-hidden="true"><use href="#icon-download"/></svg>
+              Download Driver (Windows)
+            </a>
+            <a class="btn ghost" href="/install.html">
+              <svg width="18" height="18" aria-hidden="true"><use href="#icon-chevron-right"/></svg>
+              Install Guide
+            </a>
+          </div>
+          <p class="mini" style="margin-top:10px">
+            <svg width="14" height="14" style="vertical-align:-2px" aria-hidden="true"><use href="#icon-check"/></svg>
+            Direct from cdn.wacom.com • Free • No wrappers
+          </p>
+        </div>
+        <div>
+          <div class="card" role="note" aria-label="Note">
+            <h3><svg width="16" height="16" aria-hidden="true"><use href="#icon-info"/></svg> About this tester</h3>
+            <p>Works in modern browsers with Pointer Events (pressure/tilt). Results depend on your device, driver, and app settings.</p>
+            <p class="mini">Unofficial helper site — not affiliated with Wacom Co., Ltd.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="step-draw" class="section">
+      <div class="container grid-2">
+        <div class="card">
+          <div class="canvas-wrap">
+            <div class="canvas-toolbar">
+              <div class="group">
+                <label for="brushSize">Brush</label>
+                <input id="brushSize" type="range" min="1" max="30" value="8" />
+                <span class="mini" id="brushSizeVal">8px</span>
+              </div>
+              <div class="group">
+                <label for="mode">Mode</label>
+                <select id="mode">
+                  <option value="size">Size = Pressure</option>
+                  <option value="opacity">Opacity = Pressure</option>
+                </select>
+              </div>
+              <div class="group">
+                <button id="clear" class="btn" type="button">Clear</button>
+                <button id="reset" class="btn" type="button">Reset</button>
+              </div>
+            </div>
+            <canvas id="drawboard" aria-label="Drawing canvas for pen pressure test"></canvas>
+            <div class="grid-bg" aria-hidden="true"></div>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Live readouts</h3>
+          <div class="readouts" style="margin-top:8px">
+            <div class="kv"><span class="k">Pointer type</span><span class="v" id="live-type">—</span></div>
+            <div class="kv"><span class="k">Buttons</span><span class="v" id="live-buttons">0</span></div>
+            <div class="kv"><span class="k">Pressure</span><span class="v" id="live-pressure">0.00</span></div>
+            <div class="kv"><span class="k">Tilt X</span><span class="v" id="live-tilt-x">0</span></div>
+            <div class="kv"><span class="k">Tilt Y</span><span class="v" id="live-tilt-y">0</span></div>
+            <div class="kv"><span class="k">Twist</span><span class="v" id="live-twist">0</span></div>
+          </div>
+          <p class="mini" style="margin-top:10px">If pressure stays at 0 or 1 only, toggle Windows Ink in Wacom Tablet Properties, restart the browser, and try again.</p>
+          <hr style="border-color: var(--line); border-style: solid; border-width: 1px 0 0; margin: 14px 0;">
+          <h3 id="step-connect" style="margin-top:0">Quick steps</h3>
+          <ol class="mini" style="margin:0 0 0 18px;">
+            <li>Connect your tablet directly to a USB port (avoid hubs).</li>
+            <li id="step-driver">Install or update the driver, then restart Windows.</li>
+            <li>Draw on the canvas with different pressure and tilt angles.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 style="margin-top:0">Related</h2>
+        <div class="related-list">
+          <a class="rel" href="/"><span>Download Driver</span><svg width="16" height="16" aria-hidden="true"><use href="#icon-chevron-right"/></svg></a>
+          <a class="rel" href="/install.html"><span>How to Install and Set Up</span><svg width="16" height="16" aria-hidden="true"><use href="#icon-chevron-right"/></svg></a>
+          <a class="rel" href="/troubleshoot.html"><span>Fix Pen Not Working</span><svg width="16" height="16" aria-hidden="true"><use href="#icon-chevron-right"/></svg></a>
+          <a class="rel" href="/best-settings.html"><span>Best Settings for Creative Apps</span><svg width="16" height="16" aria-hidden="true"><use href="#icon-chevron-right"/></svg></a>
+          <a class="rel" href="/windows-11.html"><span>Windows 11 Compatibility</span><svg width="16" height="16" aria-hidden="true"><use href="#icon-chevron-right"/></svg></a>
+          <a class="rel" href="/faq.html"><span>FAQ & Resources</span><svg width="16" height="16" aria-hidden="true"><use href="#icon-chevron-right"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container row">
+      <div>
+        <div class="mini">Last updated: <span id="last-modified">—</span></div>
+        <div class="mini">Unofficial helper site. Wacom is a trademark of Wacom Co., Ltd. We are not affiliated with or endorsed by Wacom.</div>
+      </div>
+      <div class="mini">
+        <a href="/faq.html#privacy" style="margin-right:10px">Privacy & Cookies</a>
+        <button class="btn ghost" id="open-cookie-settings" type="button">Cookie settings</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie banner -->
+  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <div class="cookie-inner">
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <svg width="18" height="18" aria-hidden="true" style="flex:none; margin-top:2px"><use href="#icon-info"/></svg>
+        <div>
+          <strong>We use cookies for analytics only.</strong>
+          <div class="mini">Accept to enable Google Analytics (GA4). You can change this anytime in Cookie settings.</div>
+        </div>
+        <button class="btn ghost" id="cookie-close" type="button" aria-label="Close banner"><svg width="16" height="16" aria-hidden="true"><use href="#icon-close"/></svg></button>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn primary small" id="cookie-accept" type="button">Accept</button>
+        <button class="btn small" id="cookie-decline" type="button">Decline</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Analytics + UX Scripts + Canvas logic -->
+  <script>
+    (function(){
+      const GA_ID = 'G-9HZZXBQB38';
+      const FILE_URL = 'https://cdn.wacom.com/u/productsupport/drivers/win/professional/WacomTablet_6.4.13-4.exe';
+      const FILE_NAME = 'WacomTablet_6.4.13-4.exe';
+
+      // Last modified
+      const lmEl = document.getElementById('last-modified');
+      if (lmEl) {
+        try { lmEl.textContent = new Date(document.lastModified || Date.now()).toLocaleString(undefined,{year:'numeric',month:'short',day:'2-digit'});} catch(e){ lmEl.textContent='—'; }
+      }
+
+      // Consent state
+      const KEY = 'cookieConsent';
+      const banner = document.getElementById('cookie-banner');
+      const acceptBtn = document.getElementById('cookie-accept');
+      const declineBtn = document.getElementById('cookie-decline');
+      const closeBtn = document.getElementById('cookie-close');
+      const openBtn = document.getElementById('open-cookie-settings');
+      let analyticsEnabled = false;
+
+      function showBanner(){ if (banner) banner.style.display='block'; }
+      function hideBanner(){ if (banner) banner.style.display='none'; }
+
+      function loadGA(){
+        if (analyticsEnabled || window.__gaLoaded) return;
+        // Standard GA4 tag injected on consent
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        window.gtag = window.gtag || gtag;
+        const s = document.createElement('script');
+        s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_ID);
+        s.onload = function(){ window.gtag('js', new Date()); window.gtag('config', GA_ID); };
+        document.head.appendChild(s);
+        window.__gaLoaded = true; analyticsEnabled = true;
+      }
+      function enableAnalytics(){ analyticsEnabled = true; loadGA(); }
+      function disableAnalytics(){ analyticsEnabled = false; }
+      function initConsent(){
+        const saved = localStorage.getItem(KEY);
+        if (saved === 'accepted') { enableAnalytics(); }
+        else if (saved === 'declined') { disableAnalytics(); }
+        else { showBanner(); }
+      }
+      if (acceptBtn) acceptBtn.addEventListener('click', function(){ localStorage.setItem(KEY,'accepted'); hideBanner(); enableAnalytics(); });
+      if (declineBtn) declineBtn.addEventListener('click', function(){ localStorage.setItem(KEY,'declined'); hideBanner(); disableAnalytics(); });
+      if (closeBtn) closeBtn.addEventListener('click', function(){ hideBanner(); });
+      if (openBtn) openBtn.addEventListener('click', function(){ showBanner(); });
+      initConsent();
+
+      // Download tracking
+      function attachDownloadTracking(root){
+        const links = (root||document).querySelectorAll('[data-file-url]');
+        links.forEach(function(a){
+          a.addEventListener('click', function(){
+            try {
+              if (analyticsEnabled && typeof window.gtag === 'function') {
+                window.gtag('event','file_download', {
+                  event_category:'downloads',
+                  event_label: a.getAttribute('data-file-name') || FILE_NAME,
+                  file_url: a.getAttribute('data-file-url') || FILE_URL
+                });
+              }
+            } catch(e){}
+          }, { passive: true });
+        });
+      }
+      attachDownloadTracking(document);
+
+      // Canvas tester
+      const canvas = document.getElementById('drawboard');
+      const ctx = canvas.getContext('2d');
+      const sizeInput = document.getElementById('brushSize');
+      const sizeVal = document.getElementById('brushSizeVal');
+      const modeSel = document.getElementById('mode');
+      const clearBtn = document.getElementById('clear');
+      const resetBtn = document.getElementById('reset');
+
+      const vType = document.getElementById('live-type');
+      const vButtons = document.getElementById('live-buttons');
+      const vPressure = document.getElementById('live-pressure');
+      const vTiltX = document.getElementById('live-tilt-x');
+      const vTiltY = document.getElementById('live-tilt-y');
+      const vTwist = document.getElementById('live-twist');
+
+      let baseSize = parseInt(sizeInput.value,10) || 8;
+      sizeVal.textContent = baseSize + 'px';
+      sizeInput.addEventListener('input', () => { baseSize = parseInt(sizeInput.value,10)||8; sizeVal.textContent = baseSize + 'px'; });
+
+      function resizeCanvas(){
+        const dpr = Math.max(1, window.devicePixelRatio || 1);
+        const rect = canvas.getBoundingClientRect();
+        canvas.width = Math.floor(rect.width * dpr);
+        canvas.height = Math.floor(rect.height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        // background clear
+        ctx.fillStyle = '#0b0c10';
+        ctx.fillRect(0,0,rect.width,rect.height);
+      }
+      // Ensure a fixed height on load
+      function ensureCanvasHeight(){ if (!canvas.style.height) canvas.style.height = '360px'; }
+      ensureCanvasHeight();
+      resizeCanvas();
+      window.addEventListener('resize', resizeCanvas);
+
+      // Drawing state per pointerId
+      const pointers = new Map();
+
+      function updateReadouts(e){
+        vType.textContent = e.pointerType || 'unknown';
+        vButtons.textContent = e.buttons != null ? e.buttons : 0;
+        vPressure.textContent = (typeof e.pressure === 'number' ? e.pressure.toFixed(2) : 'n/a');
+        vTiltX.textContent = (e.tiltX != null ? e.tiltX : 'n/a');
+        vTiltY.textContent = (e.tiltY != null ? e.tiltY : 'n/a');
+        vTwist.textContent = (e.twist != null ? e.twist : 'n/a');
+      }
+
+      function stroke(e){
+        const pt = pointers.get(e.pointerId);
+        if (!pt) return;
+        const x = e.offsetX, y = e.offsetY;
+        const pressure = (typeof e.pressure === 'number' && e.pressure > 0) ? e.pressure : 0.1; // minimal ink
+        const mode = modeSel.value;
+        const size = Math.max(0.5, baseSize * (mode === 'size' ? pressure : 1));
+        const alpha = Math.min(1, Math.max(0.1, mode === 'opacity' ? Math.max(0.05, pressure) : 1));
+
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.strokeStyle = `rgba(255,255,255,${alpha})`;
+        ctx.lineWidth = size;
+        ctx.beginPath();
+        ctx.moveTo(pt.x, pt.y);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+
+        pt.x = x; pt.y = y;
+      }
+
+      function onPointerDown(e){
+        if (e.pointerType !== 'pen' && e.pointerType !== 'mouse' && e.pointerType !== 'touch') return;
+        canvas.setPointerCapture(e.pointerId);
+        pointers.set(e.pointerId, { x: e.offsetX, y: e.offsetY });
+        updateReadouts(e);
+        stroke(e);
+      }
+      function onPointerMove(e){ if (pointers.has(e.pointerId)) { updateReadouts(e); stroke(e); } }
+      function onPointerUp(e){ pointers.delete(e.pointerId); updateReadouts(e); }
+      function onPointerCancel(e){ pointers.delete(e.pointerId); }
+
+      canvas.addEventListener('pointerdown', onPointerDown);
+      canvas.addEventListener('pointermove', onPointerMove);
+      canvas.addEventListener('pointerup', onPointerUp);
+      canvas.addEventListener('pointercancel', onPointerCancel);
+      canvas.addEventListener('pointerleave', onPointerUp);
+
+      clearBtn.addEventListener('click', function(){
+        const rect = canvas.getBoundingClientRect();
+        ctx.fillStyle = '#0b0c10';
+        ctx.fillRect(0,0,rect.width,rect.height);
+      });
+      resetBtn.addEventListener('click', function(){
+        sizeInput.value = '8';
+        baseSize = 8; sizeVal.textContent = '8px';
+        modeSel.value = 'size';
+        const rect = canvas.getBoundingClientRect();
+        ctx.fillStyle = '#0b0c10';
+        ctx.fillRect(0,0,rect.width,rect.height);
+      });
+
+      // Feature note: if PointerEvent unsupported, show a notice overlay
+      if (!('PointerEvent' in window)) {
+        const warn = document.createElement('div');
+        warn.className = 'mini';
+        warn.style.cssText = 'position:absolute;inset:auto 10px 10px 10px;background:#1a1c21;border:1px solid var(--line);padding:10px;border-radius:8px;';
+        warn.textContent = 'Pointer Events not supported. Try a modern browser to test pressure/tilt.';
+        document.querySelector('.canvas-wrap').appendChild(warn);
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Best Wacom Settings for Photoshop, Illustrator, and Clip Studio (Windows)</title>
+  <meta name="description" content="Recommended Wacom settings for Photoshop, Illustrator, and Clip Studio on Windows 10/11. Pressure curve tips, Windows Ink vs WinTab, mapping, brush smoothing, and quick tweaks." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://wacom-app.github.io/best-settings.html" />
+  <link rel="preconnect" href="https://cdn.wacom.com" crossorigin>
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Icons -->
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://wacom-app.github.io/best-settings.html" />
+  <meta property="og:title" content="Best Wacom Settings for Photoshop, Illustrator, and Clip Studio (Windows)" />
+  <meta property="og:description" content="Pressure curve presets, Windows Ink vs WinTab, mapping, and brush tweaks for smooth drawing on Windows 10/11." />
+  <meta property="og:image" content="https://wacom-app.github.io/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Best Wacom Settings for Photoshop, Illustrator, and Clip Studio (Windows)" />
+  <meta name="twitter:description" content="Dial-in your Wacom on Windows: pressure curve, Ink/WinTab, mapping, smoothing, and latency tips." />
+  <meta name="twitter:image" content="https://wacom-app.github.io/og-image.png" />
+
+  <!-- Modified time for crawlers -->
+  <meta property="article:modified_time" content="2026-05-08T05:50:00Z" />
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://wacom-app.github.io/"},
+          {"@type":"ListItem","position":2,"name":"Best Settings","item":"https://wacom-app.github.io/best-settings.html"}
+        ]
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Wacom Tablet Driver for Windows",
+        "applicationCategory": "Utilities",
+        "operatingSystem": "Windows 10, Windows 11",
+        "softwareVersion": "6.4.13-4",
+        "downloadUrl": "https://cdn.wacom.com/u/productsupport/drivers/win/professional/WacomTablet_6.4.13-4.exe",
+        "installUrl": "https://cdn.wacom.com/u/productsupport/drivers/win/professional/WacomTablet_6.4.13-4.exe",
+        "inLanguage": "en",
+        "offers": {"@type":"Offer","price":"0","priceCurrency":"USD","availability":"https://schema.org/InStock"},
+        "publisher": {"@type":"Organization","name":"Wacom Co., Ltd.","url":"https://www.wacom.com/"},
+        "softwareRequirements": "Windows 10 or Windows 11, 64-bit",
+        "dateModified": "2026-05-08",
+        "image": "https://wacom-app.github.io/og-image.png",
+        "description": "Official Wacom Tablet Driver. Safe direct link from Wacom CDN."
+      },
+      {
+        "@type": "HowTo",
+        "name": "Tune Wacom pressure curve for line art (Windows)",
+        "description": "Adjust the Wacom pressure curve for precise line art with a light hand.",
+        "totalTime": "PT3M",
+        "tool": [{"@type":"HowToTool","name":"Wacom Tablet Properties"}],
+        "step": [
+          {"@type":"HowToStep","url":"https://wacom-app.github.io/best-settings.html#curve","name":"Open Wacom Tablet Properties","text":"Launch Wacom Tablet Properties from Start menu."},
+          {"@type":"HowToStep","url":"https://wacom-app.github.io/best-settings.html#curve","name":"Edit pressure curve","text":"On the Pen tab, drag the lower-left point slightly inward to make light strokes register more easily."},
+          {"@type":"HowToStep","url":"https://wacom-app.github.io/best-settings.html#curve","name":"Test and refine","text":"Draw in your app. If lines feel too heavy, lower the initial pressure further; if too jittery, ease back toward linear."}
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type":"Question","name":"Photoshop: Windows Ink or WinTab?","acceptedAnswer":{"@type":"Answer","text":"Try Windows Ink first. If pressure fails or the cursor lags, disable Ink in Wacom Tablet Properties and enable WinTab in Photoshop (PSUserConfig/workspace options). Restart Photoshop after changes."}},
+          {"@type":"Question","name":"Illustrator: jagged lines when zoomed in.","acceptedAnswer":{"@type":"Answer","text":"Enable Windows Ink, reduce stabilization, and draw at 100% zoom when testing. Check GPU acceleration in Illustrator preferences."}},
+          {"@type":"Question","name":"Clip Studio Paint: stabilize without lag.","acceptedAnswer":{"@type":"Answer","text":"Use a moderate Stabilization value (10–20) and keep Windows Ink on. If latency appears, try lower smoothing or WinTab mode."}},
+          {"@type":"Question","name":"What mapping is best for dual monitors?","acceptedAnswer":{"@type":"Answer","text":"Map the tablet to your main display only for precision. Use ExpressKeys to switch displays if you need access to both."}},
+          {"@type":"Question","name":"Brush lag in heavy files.","acceptedAnswer":{"@type":"Answer","text":"Lower brush smoothing, close overlays, update GPU drivers, and test on High performance power plan."}}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --text: #f5f5f5;
+      --muted: #bdbdbd;
+      --card: #111213;
+      --line: #1f2022;
+      --accent: #00b0ff;
+      --accent-contrast: #001018;
+      --success: #3ddc84;
+      --warning: #ffd166;
+      --error: #ff6b6b;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    a { color: var(--text); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    header { position: sticky; top: 0; z-index: 50; background: rgba(10,10,10,.9); backdrop-filter: saturate(140%) blur(8px); border-bottom: 1px solid var(--line); }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; gap: 12px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .2px; }
+    .brand .logo { width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; border-radius: 6px; background: #fff; color: #000; font-size: 18px; font-weight: 800; }
+    nav ul { list-style: none; display: flex; gap: 14px; margin: 0; padding: 0; flex-wrap: wrap; }
+    nav a { padding: 8px 10px; border-radius: 8px; }
+    nav a:focus-visible, .btn:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    nav a:hover { background: #141518; text-decoration: none; }
+
+    .hero { padding: 48px 0; border-bottom: 1px solid var(--line); background: linear-gradient(180deg, rgba(0,0,0,.0), rgba(0,0,0,.15)); }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: center; }
+    .hero h1 { font-size: clamp(26px, 4vw, 40px); line-height: 1.15; margin: 0 0 10px; }
+    .hero p.lead { color: var(--muted); font-size: clamp(14px, 2vw, 18px); margin: 0 0 18px; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--line); background: #15161a; color: #fff; font-weight: 600; cursor: pointer; transition: transform .04s ease, background .2s ease; }
+    .btn:hover { background: #1a1c21; text-decoration: none; }
+    .btn:active { transform: translateY(1px); }
+    .btn.primary { background: var(--accent); color: #001018; border-color: transparent; }
+    .btn.primary:hover { background: #1ac0ff; color: var(--accent-contrast); }
+    .btn.ghost { background: transparent; }
+
+    .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 999px; background: #121316; border: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .mini { font-size: 12px; color: var(--muted); }
+
+    .section { padding: 36px 0; border-bottom: 1px solid var(--line); }
+
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+    .card h3 { margin: 0 0 6px; font-size: 16px; }
+    .card p, .card li { color: var(--muted); font-size: 14px; }
+    .card ul { margin: 8px 0 0 18px; }
+
+    .related-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .rel { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px; border: 1px solid var(--line); border-radius: 10px; background: #0f1013; }
+
+    footer { padding: 28px 0; color: var(--muted); }
+    footer .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+
+    .cookie-banner { position: fixed; right: 16px; bottom: 16px; width: min(560px, calc(100% - 32px)); z-index: 100; background: #0e0f12; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 10px 40px rgba(0,0,0,.45); display: none; }
+    .cookie-inner { padding: 14px; display: grid; gap: 10px; }
+    .cookie-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .cookie-banner .btn { padding: 10px 12px; }
+    .cookie-banner .btn.small { font-size: 14px; }
+
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .related-list { grid-template-columns: 1fr; }
+      nav ul { gap: 6px; }
+    }
+  </style>
+
+  <!-- Inline SVG sprite -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="icon-windows" viewBox="0 0 24 24" fill="currentColor"><path d="M3 5l8-1.5v8.5H3V5zm9-1.7L21 2v9.3h-9V3.3zM3 12.7h8V21L3 19.5v-6.8zM12 12.7h9V22l-9-1.7v-7.6z"/></symbol>
+    <symbol id="icon-download" viewBox="0 0 24 24" fill="currentColor"><path d="M5 20h14v-2H5v2zm7-18h-1v9.59l-3.3-3.3-1.4 1.41L12 15.41l5.7-5.71-1.4-1.41-3.3 3.3V2z"/></symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></symbol>
+    <symbol id="icon-question" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm1 14h-2v-2h2v2zm1.9-6.5c0 1.9-2 2.2-2 3.5h-1.8c0-2.4 2-2.7 2-3.5 0-.6-.5-1.1-1.2-1.1-.8 0-1.3.6-1.3 1.4H8c0-1.7 1.4-3.2 3.7-3.2 1.9 0 3.2 1.2 3.2 2.9z"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.2l-3.5-3.5-1.4 1.4L9 19 20.3 7.7l-1.4-1.4z"/></symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24" fill="currentColor"><path d="M9 6l6 6-6 6"/></symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24" fill="currentColor"><path d="M18.3 5.7L12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3l6.3 6.3 6.3-6.3z"/></symbol>
+  </svg>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <a class="brand" href="/" aria-label="Home">
+        <span class="logo" aria-hidden="true">W</span>
+        <span>Wacom for Windows</span>
+      </a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="/install.html">Install</a></li>
+          <li><a href="/troubleshoot.html">Troubleshoot</a></li>
+          <li><a href="/best-settings.html" aria-current="page">Best Settings</a></li>
+          <li><a href="/windows-11.html">Windows 11</a></li>
+          <li><a href="/pressure-test.html">Pressure Test</a></li>
+          <li><a href="/faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="pill" aria-hidden="true">
+            <svg width="16" height="16" aria-hidden="true"><use href="#icon-windows"/></svg>
+            Windows 10 / 11 • Driver v6.4.13-4
+          </div>
+          <h1>Best Wacom Settings for Photoshop, Illustrator, and Clip Studio</h1>
+          <p class="lead">Dial in pressure, tilt, mapping, and smoothing so strokes feel natural and responsive in your favorite apps on Windows.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="https://cdn.wacom.com/u/productsupport/drivers/win/professional/WacomTablet_6.4.13-4.exe" data-file-url="https://cdn.wacom.com/u/productsupport/drivers/win/professional/WacomTablet_6.4.13-4.exe" data-file-name="WacomTablet_6.4.13-4.exe" rel="nofollow">
+              <svg width="18" height="18" aria-hidden="true"><use href="#icon-download"/></svg>
+              Download Driver (Windows)
+            </a>
+            <a class="btn ghost" href="/pressure-test.html">
+              <svg width="18" height="18" aria-hidden="true"><use href="#icon-chevron-right"/></svg>
+              Open Pressure Test
+            </a>
+          </div>
+          <p class="mini" style="margin-top:10px">
+            <svg width="14" height="14" style="vertical-align:-2px" aria-hidden="true"><use href="#icon-check"/></svg>
+            Direct from cdn.wacom.com • Free • No wrappers
+          </p>
+        </div>
+        <div>
+          <div class="card" role="note" aria-label="Quick tips">
+            <h3><svg width="16" height="16" aria-hidden="true"><use href="#icon-info"/></svg> Quick tips</h3>
+            <ul class="mini" style="margin:0 0 0 18px;">
+              <li><strong>Start linear</strong> pressure curve, then add gentle S-shape.</li>
+              <li><strong>Windows Ink:</strong> try ON first; if pressure fails in an app, try OFF + WinTab.</li>
+              <li>Map to <strong>one monitor</strong> for precision; switch when needed.</li>
+              <li>Keep <strong>one tablet driver</strong> installed to avoid conflicts.</li>
+            </ul>
+            <p class="mini" style="margin-top:8px">Unofficial helper site — not affiliated with Wacom Co., Ltd.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 style="margin-top:0">Recommended settings by app</h2>
+        <div class="grid-3">
+          <div class="card">
+            <h3><svg width="14" height="14" aria-hidden="true"><use href="#icon-check"/></svg> Photoshop</h3>
+            <ul>
+              <li>Windows Ink: try ON; if pressure fails or lags, turn Ink OFF and enable WinTab in PS.</li>
+              <li>Brush: start with minimal S-curve; smoothing 5–10 for line art.</li>
+              <li>Performance: enable GPU; disable heavy overlays while drawing.</li>
+              <li>Shortcuts: map pen button to Alt (eyedropper) or Space (pan).</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3><svg width="14" height="14" aria-hidden="true"><use href="#icon-check"/></svg> Illustrator</h3>
+            <ul>
+              <li>Windows Ink: ON recommended; adjust pressure via brush settings.</li>
+              <li>Brush fidelity: lower smoothing for faster response.</li>
+              <li>GPU Performance: ON; test Real-Time Drawing & Editing.</li>
+              <li>Pen tilt: map for calligraphic brushes if supported.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3><svg width="14" height="14" aria-hidden="true"><use href="#icon-check"/></svg> Clip Studio Paint</h3>
+            <ul>
+              <li>Windows Ink: ON by default; switch to WinTab only if pressure fails.</li>
+              <li>Stabilization: 10–20 for smooth lines without heavy lag.</li>
+              <li>Pressure curve: slightly lighter at the start for tapers.</li>
+              <li>Tablet settings: ensure correct monitor mapping per workspace.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="curve" class="section">
+      <div class="container">
+        <h2 style="margin-top:0">Pressure curve presets</h2>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Line art (inking)</h3>
+            <p>Gentle S-curve. Light initial pressure for clean tapers; keep mid-high linearity to avoid sudden jumps.</p>
+          </div>
+          <div class="card">
+            <h3>Painting (soft shading)</h3>
+            <p>Slightly flatter early curve to broaden mid-tones. Increase flow/opacity dynamics in app brushes.</p>
+          </div>
+          <div class="card">
+            <h3>3D sculpt/texturing</h3>
+            <p>More linear curve for predictable depth; map a pen button to Alt/Rotate for quick navigation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 style="margin-top:0">Windows Ink vs WinTab</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3><svg width="14" height="14" aria-hidden="true"><use href="#icon-question"/></svg> When to use Windows Ink</h3>
+            <p>Start with Ink ON. Many modern apps use Ink for native pen input. If you see pressure inking correctly, keep it on.</p>
+          </div>
+          <div class="card">
+            <h3><svg width="14" height="14" aria-hidden="true"><use href="#icon-question"/></svg> When to switch to WinTab</h3>
+            <p>If pressure disappears, double-click misfires, or lag occurs, turn Ink OFF in Wacom Tablet Properties and enable WinTab in the app (if available). Restart the app after changing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 style="margin-top:0">Related</h2>
+        <div class="related-list">
+          <a class="rel" href="/"><span>Download Driver</span><svg width="16" height="16" aria-hidden="true"><use href="#icon-chevron-right"/></svg></a>
+          <a class="rel" href="/install.html"><span>How to Install and Set Up</span><svg width="16" height="16" aria-hidden="true"><use href="#icon-chevron-right"/></svg></a>
+          <a class="rel" href="/troubleshoot.html"><span>Fix Pen Not Working</span><svg width="16" height="16" aria-hidden="true"><use href="#icon-chevron-right"/></svg></a>
+          <a class="rel" href="/windows-11.html"><span>Windows 11 Compatibility</span><svg width="16" height="16" aria-hidden="true"><use href="#icon-chevron-right"/></svg></a>
+          <a class="rel" href="/pressure-test.html"><span>Calibrate & Test Pressure</span><svg width="16" height="16" aria-hidden="true"><use href="#icon-chevron-right"/></svg></a>
+          <a class="rel" href="/faq.html"><span>FAQ & Resources</span><svg width="16" height="16" aria-hidden="true"><use href="#icon-chevron-right"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container row">
+      <div>
+        <div class="mini">Last updated: <span id="last-modified">—</span></div>
+        <div class="mini">Unofficial helper site. Wacom is a trademark of Wacom Co., Ltd. We are not affiliated with or endorsed by Wacom.</div>
+      </div>
+      <div class="mini">
+        <a href="/faq.html#privacy" style="margin-right:10px">Privacy & Cookies</a>
+        <button class="btn ghost" id="open-cookie-settings" type="button">Cookie settings</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Cookie banner -->
+  <div class="cookie-banner" id="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
+    <div class="cookie-inner">
+      <div style="display:flex; gap:10px; align-items:flex-start;">
+        <svg width="18" height="18" aria-hidden="true" style="flex:none; margin-top:2px"><use href="#icon-info"/></svg>
+        <div>
+          <strong>We use cookies for analytics only.</strong>
+          <div class="mini">Accept to enable Google Analytics (GA4). You can change this anytime in Cookie settings.</div>
+        </div>
+        <button class="btn ghost" id="cookie-close" type="button" aria-label="Close banner"><svg width="16" height="16" aria-hidden="true"><use href="#icon-close"/></svg></button>
+      </div>
+      <div class="cookie-actions">
+        <button class="btn primary small" id="cookie-accept" type="button">Accept</button>
+        <button class="btn small" id="cookie-decline" type="button">Decline</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Analytics + UX Scripts -->
+  <script>
+    (function(){
+      const GA_ID = 'G-9HZZXBQB38';
+      const FILE_URL = 'https://cdn.wacom.com/u/productsupport/drivers/win/professional/WacomTablet_6.4.13-4.exe';
+      const FILE_NAME = 'WacomTablet_6.4.13-4.exe';
+
+      // Last modified
+      const lmEl = document.getElementById('last-modified');
+      if (lmEl) {
+        try { lmEl.textContent = new Date(document.lastModified || Date.now()).toLocaleString(undefined,{year:'numeric',month:'short',day:'2-digit'});} catch(e){ lmEl.textContent='—'; }
+      }
+
+      // Consent state
+      const KEY = 'cookieConsent';
+      const banner = document.getElementById('cookie-banner');
+      const acceptBtn = document.getElementById('cookie-accept');
+      const declineBtn = document.getElementById('cookie-decline');
+      const closeBtn = document.getElementById('cookie-close');
+      const openBtn = document.getElementById('open-cookie-settings');
+      let analyticsEnabled = false;
+
+      function showBanner(){ if (banner) banner.style.display='block'; }
+      function hideBanner(){ if (banner) banner.style.display='none'; }
+
+      function loadGA(){
+        if (analyticsEnabled || window.__gaLoaded) return;
+        // Standard GA4 tag injected on consent
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        window.gtag = window.gtag || gtag;
+        const s = document.createElement('script');
+        s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(GA_ID);
+        s.onload = function(){ window.gtag('js', new Date()); window.gtag('config', GA_ID); };
+        document.head.appendChild(s);
+        window.__gaLoaded = true; analyticsEnabled = true;
+      }
+      function enableAnalytics(){ analyticsEnabled = true; loadGA(); }
+      function disableAnalytics(){ analyticsEnabled = false; }
+      function initConsent(){
+        const saved = localStorage.getItem(KEY);
+        if (saved === 'accepted') { enableAnalytics(); }
+        else if (saved === 'declined') { disableAnalytics(); }
+        else { showBanner(); }
+      }
+      if (acceptBtn) acceptBtn.addEventListener('click', function(){ localStorage.setItem(KEY,'accepted'); hideBanner(); enableAnalytics(); });
+      if (declineBtn) declineBtn.addEventListener('click', function(){ localStorage.setItem(KEY,'declined'); hideBanner(); disableAnalytics(); });
+      if (closeBtn) closeBtn.addEventListener('click', function(){ hideBanner(); });
+      if (openBtn) openBtn.addEventListener('click', function(){ showBanner(); });
+      initConsent();
+
+      // Download tracking for buttons/links carrying data-file-url
+      function attachDownloadTracking(root){
+        const links = (root||document).querySelectorAll('[data-file-url]');
+        links.forEach(function(a){
+          a.addEventListener('click', function(){
+            try {
+              if (analyticsEnabled && typeof window.gtag === 'function') {
+                window.gtag('event','file_download', {
+                  event_category:'downloads',
+                  event_label: a.getAttribute('data-file-name') || FILE_NAME,
+                  file_url: a.getAttribute('data-file-url') || FILE_URL
+                });
+              }
+            } catch(e){}
+          }, { passive: true });
+        });
+      }
+      attachDownloadTracking(document);
+    })();
+  </script>
+</body>
+</html>
