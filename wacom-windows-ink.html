@@ -1,0 +1,74 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wacom Windows Ink — Enable, Disable and Fix Per-App Guide</title>
+<meta name="description" content="How to enable or disable Windows Ink for Wacom on Windows. Photoshop needs it ON, Krita needs it OFF. Toggle in Wacom Tablet Properties, app-specific instructions.">
+<link rel="canonical" href="https://wacom-app.github.io/wacom-windows-ink.html">
+<meta name="last-modified" content="2026-06-08">
+<meta property="og:title" content="Wacom Windows Ink — Enable, Disable and Fix Per-App Guide">
+<meta property="og:description" content="How to enable or disable Windows Ink for Wacom on Windows. Photoshop needs it ON, Krita needs it OFF. Toggle in Wacom Tablet Properties, app-specific instructions.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://wacom-app.github.io/wacom-windows-ink.html">
+<meta property="og:image" content="https://wacom-app.github.io/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/style.css">
+</head><body>
+<nav class="site-nav"><div class="wrap"><div class="nav-inner"><a href="/index.html" class="nav-logo"><div class="nav-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><span class="nav-logo-name">Wacom</span><span class="nav-logo-sub">for Windows</span></a><div class="nav-links"><a href="/index.html" id="nl-home">Download</a><a href="/install.html" id="nl-install">Install</a><a href="/windows-11.html" id="nl-w11">Windows 11</a><a href="/pressure-test.html" id="nl-test">Pen test</a><a href="/troubleshoot.html" id="nl-fix">Fix errors</a><a href="/faq.html" id="nl-faq">FAQ</a></div><a href="/index.html" class="nav-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</a></div></div></nav>
+<div class="page-hero"><div class="wrap">
+<nav class="breadcrumb"><a href="/index.html">home</a> <span>/</span> <span>wacom-windows-ink</span></nav>
+<span class="page-tag">Windows Ink guide</span>
+<h1>Wacom Windows Ink &mdash; <span>enable, disable &amp; fix per-app guide</span></h1>
+<p class="page-lead">Windows Ink vs WinTab for Wacom on Windows. Photoshop CC needs Windows Ink ON, Krita needs it OFF. How to toggle and configure per-app.</p>
+
+</div></div>
+<div class="wrap"><div class="content-layout">
+<main><div class="section"><span class="section-label">What is Windows Ink?</span><h2>Windows Ink &mdash; two tablet input APIs on Windows</h2>
+<p>Windows has two APIs for pen tablets: <strong>WinTab</strong> (older, industry standard since the 1990s) and <strong>Windows Ink</strong> (Microsoft's newer API, introduced with Windows 8). Wacom supports both &mdash; you choose which one to use in Wacom Tablet Properties.</p>
+<div class="tbl-wrap"><table><thead><tr><th>Feature</th><th>Windows Ink</th><th>WinTab (off)</th></tr></thead><tbody>
+<tr><td>Photoshop CC 2019+</td><td class="td-ok">Required</td><td class="td-bad">No pressure</td></tr>
+<tr><td>Krita</td><td class="td-warn">Problems</td><td class="td-ok">Best</td></tr>
+<tr><td>Clip Studio Paint</td><td>Configurable</td><td>Configurable</td></tr>
+<tr><td>Blender</td><td class="td-warn">Issues</td><td class="td-ok">Works</td></tr>
+<tr><td>Affinity Photo/Designer</td><td class="td-ok">Works</td><td>Works</td></tr>
+<tr><td>Older apps (pre-2018)</td><td class="td-warn">May not work</td><td class="td-ok">Works</td></tr>
+</tbody></table></div>
+</div>
+<div class="section"><span class="section-label">Toggle Windows Ink</span><h2>How to enable or disable Windows Ink</h2>
+<ul class="steps">
+<li class="step"><div class="step-n">1</div><div><h3>Open Wacom Tablet Properties</h3><p>Right-click the Wacom icon in the system tray &rarr; <strong>Wacom Tablet Properties</strong>.</p></div></li>
+<li class="step"><div class="step-n">2</div><div><h3>Click the Pen tab</h3><p>Select the <strong>Pen</strong> tab at the top of the Wacom Tablet Properties window.</p></div></li>
+<li class="step"><div class="step-n">3</div><div><h3>Check or uncheck "Use Windows Ink"</h3><p>The checkbox is at the bottom of the Pen tab. Check it to enable Windows Ink, uncheck to use WinTab (legacy) mode.</p></div></li>
+<li class="step"><div class="step-n">4</div><div><h3>Restart your app</h3><p>Close and reopen your drawing application. The change does not take effect in a running application.</p></div></li>
+</ul>
+<div class="callout callout-warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><span>If you use multiple apps with different requirements (e.g. Photoshop CC and Krita), you will need to toggle this setting when switching between them, unless the app has its own API override setting.</span></div>
+</div>
+<div class="section"><span class="section-label">App-specific fixes</span><h2>Windows Ink settings by application</h2>
+<div class="faq">
+<div class="faq-item"><details open><summary>Photoshop CC 2019+ &mdash; enable Windows Ink</summary><div class="faq-ans">
+<p>Adobe switched Photoshop to Windows Ink API in 2019. Steps:</p>
+<ol style="margin:8px 0"><li>Enable Windows Ink in Wacom Tablet Properties (see above)</li><li>In Photoshop: Edit &rarr; Preferences &rarr; Performance &rarr; Advanced Settings &rarr; Drawing Mode: <strong>Basic</strong></li><li>Restart Photoshop</li></ol>
+</div></details></div>
+<div class="faq-item"><details><summary>Krita &mdash; disable Windows Ink</summary><div class="faq-ans">
+<p>Krita works better with WinTab (Windows Ink OFF). Steps:</p>
+<ol style="margin:8px 0"><li>Disable Windows Ink in Wacom Tablet Properties</li><li>In Krita: Settings &rarr; Configure Krita &rarr; Tablet Settings &rarr; select <strong>WinTab</strong></li><li>Restart Krita</li></ol>
+</div></details></div>
+<div class="faq-item"><details><summary>Clip Studio Paint &mdash; configure in app</summary><div class="faq-ans">
+<p>Clip Studio Paint has its own tablet API setting. Go to: File &rarr; Preferences &rarr; Tablet &rarr; select <strong>Wintab</strong> or <strong>Windows Ink</strong> to match your Wacom setting. Restart CSP after changing.</p>
+</div></details></div>
+<div class="faq-item"><details><summary>Blender &mdash; disable Windows Ink</summary><div class="faq-ans">
+<p>Blender uses WinTab by default and can have issues with Windows Ink. Disable Windows Ink in Wacom Tablet Properties. In Blender: Edit &rarr; Preferences &rarr; Input &rarr; Tablet API: set to <strong>WinTab</strong>.</p>
+</div></details></div>
+</div></div>
+<div class="section"><span class="section-label">FAQ</span><h2>Windows Ink questions</h2><div class="faq">
+<div class="faq-item"><details><summary>Windows Ink is enabled but pressure still not working in Photoshop</summary><div class="faq-ans">Check the Drawing Mode: Edit &rarr; Preferences &rarr; Performance &rarr; Advanced Settings. Set Drawing Mode to <strong>Basic</strong> (not Advanced or Normal). Also make sure you restarted Photoshop after enabling Windows Ink.</div></details></div>
+<div class="faq-item"><details><summary>I do not see the Windows Ink checkbox in Wacom Tablet Properties</summary><div class="faq-ans">This option may not be visible if the tablet is not connected or the driver is not fully loaded. Ensure your Wacom tablet is plugged in and the Wacom service is running before opening Wacom Tablet Properties.</div></details></div>
+</div></div>
+<div class="cta-banner"><div><h2>Pressure still not working?</h2><p>Full pen pressure fix guide with app-by-app instructions.</p></div><a href="/wacom-pressure-not-working.html" class="btn-white"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Pressure fix guide</a></div>
+<div style="margin-bottom:24px"><span class="section-label">Related guides</span><div class="rel-grid"><a href="/wacom-pressure-not-working.html" class="rel-card"><div class="rel-title">Pressure fix &rarr;</div><div class="rel-sub">no pressure guide</div></a><a href="/wacom-photoshop.html" class="rel-card"><div class="rel-title">Photoshop setup &rarr;</div><div class="rel-sub">detailed PS guide</div></a><a href="/best-settings.html" class="rel-card"><div class="rel-title">Best settings &rarr;</div><div class="rel-sub">all app settings</div></a></div></div></main>
+<aside class="content-sidebar"><div class="sb-card ver-badge"><div class="ver-badge-label">Latest driver</div><div class="ver-badge-val">6.4.13-4</div><div class="ver-badge-sub">Windows 10 / 11</div></div><div class="sb-card"><div class="sb-card-title">Download & install</div><ul class="sb-links"><li><a href="/index.html">Download Wacom driver</a></li><li><a href="/install.html">Install guide</a></li><li><a href="/windows-11.html">Windows 11 guide</a></li><li><a href="/wacom-clean-install.html">Clean install</a></li><li><a href="/wacom-uninstall.html">Uninstall driver</a></li></ul></div><div class="sb-card"><div class="sb-card-title">Fix errors</div><ul class="sb-links"><li><a href="/troubleshoot.html">Troubleshooting</a></li><li><a href="/wacom-pen-not-working.html">Pen not working</a></li><li><a href="/wacom-not-detected.html">Tablet not detected</a></li><li><a href="/wacom-pressure-not-working.html">No pen pressure</a></li><li><a href="/wacom-windows-ink.html" class="cur">Windows Ink</a></li></ul></div><div class="sb-card"><div class="sb-card-title">Tablets & apps</div><ul class="sb-links"><li><a href="/wacom-intuos.html">Wacom Intuos</a></li><li><a href="/wacom-one.html">Wacom One</a></li><li><a href="/wacom-cintiq-windows.html">Cintiq on Windows</a></li><li><a href="/wacom-photoshop.html">Photoshop setup</a></li><li><a href="/wacom-clip-studio.html">Clip Studio Paint</a></li><li><a href="/best-settings.html">Best settings</a></li><li><a href="/pressure-test.html">Pressure test</a></li><li><a href="/faq.html">FAQ</a></li></ul></div></aside>
+</div></div>
+<footer class="site-footer"><div class="wrap"><div class="footer-inner"><div><div class="footer-logo"><div class="footer-logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div><span class="footer-logo-name">Wacom for Windows</span></div><p class="footer-tagline">Unofficial Windows guide for Wacom tablets &mdash; drivers, setup, troubleshooting.</p></div><div><div class="footer-col-title">Setup</div><ul class="footer-links"><li><a href="/index.html">Download driver</a></li><li><a href="/install.html">Install guide</a></li><li><a href="/windows-11.html">Windows 11</a></li><li><a href="/wacom-clean-install.html">Clean install</a></li><li><a href="/wacom-uninstall.html">Uninstall</a></li></ul></div><div><div class="footer-col-title">Fix errors</div><ul class="footer-links"><li><a href="/troubleshoot.html">Troubleshooting</a></li><li><a href="/wacom-pen-not-working.html">Pen not working</a></li><li><a href="/wacom-not-detected.html">Tablet not detected</a></li><li><a href="/wacom-pressure-not-working.html">No pen pressure</a></li><li><a href="/wacom-windows-ink.html">Windows Ink</a></li></ul></div><div><div class="footer-col-title">Guides</div><ul class="footer-links"><li><a href="/best-settings.html">Best settings</a></li><li><a href="/wacom-photoshop.html">Photoshop setup</a></li><li><a href="/wacom-clip-studio.html">Clip Studio</a></li><li><a href="/pressure-test.html">Pressure test</a></li><li><a href="/faq.html">FAQ</a></li></ul></div></div><div class="footer-bottom"><p>Not affiliated with Wacom Co., Ltd. Unofficial community guide.</p><p><strong>Affiliate disclosure:</strong> Download links may be partner links.</p></div></div></footer><div class="cookie-bar" id="cookieBar" style="display:none"><p>We use Google Analytics for anonymous traffic data. <a href="/faq.html">Privacy</a></p><div class="cookie-btns"><button class="cookie-accept" id="cookieAccept">Accept</button><button class="cookie-decline" id="cookieDecline">Decline</button></div></div><script async src="https://www.googletagmanager.com/gtag/js?id=G-9HZZXBQB38"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("consent","default",{analytics_storage:"denied",ad_storage:"denied"});gtag("js",new Date());gtag("config","G-9HZZXBQB38",{anonymize_ip:true,send_page_view:false});function grantGA(){gtag("consent","update",{analytics_storage:"granted"});gtag("event","page_view",{page_location:location.href,page_title:document.title})}document.addEventListener("DOMContentLoaded",function(){var bar=document.getElementById("cookieBar");var c=localStorage.getItem("wc_consent");if(!c){bar.style.display="flex"}else if(c==="1"){grantGA()}document.getElementById("cookieAccept").addEventListener("click",function(){localStorage.setItem("wc_consent","1");grantGA();bar.style.display="none"});document.getElementById("cookieDecline").addEventListener("click",function(){localStorage.setItem("wc_consent","0");bar.style.display="none"});});</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"HowTo","name":"Enable or Disable Windows Ink for Wacom","step":[{"@type":"HowToStep","position":1,"name":"Open Wacom Tablet Properties","text":"Right-click Wacom tray icon > Wacom Tablet Properties"},{"@type":"HowToStep","position":2,"name":"Go to Pen tab","text":"Click the Pen tab"},{"@type":"HowToStep","position":3,"name":"Toggle Windows Ink","text":"Check Use Windows Ink for Photoshop CC; uncheck for Krita and Blender"},{"@type":"HowToStep","position":4,"name":"Restart app","text":"Close and reopen your drawing application"}]}</script>
+<script>var el=document.getElementById("nl-fix");if(el)el.classList.add("active");</script>
+</body></html>
